@@ -1,0 +1,33 @@
+replicaCount: 2
+
+mongo:
+  image: mongo:latest
+  storage: 1Gi
+
+userService:
+  image:
+    repository: sganesamoorthy/customer-service
+    tag: latest
+  port: 8081
+  env:
+    SPRING_PROFILES_ACTIVE: docker
+    SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/userdb
+
+productService:
+  image:
+    repository: sganesamoorthy/project-service
+    tag: latest
+  port: 8082
+  env:
+    SPRING_PROFILES_ACTIVE: docker
+    SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/productdb
+
+ingress:
+  enabled: true
+  hosts:
+    - host: user.your-domain.com
+      paths:
+        - /
+    - host: product.your-domain.com
+      paths:
+        - /
