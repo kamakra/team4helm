@@ -25,9 +25,9 @@ productService:
 ingress:
   enabled: true
   hosts:
-    - host: user.your-domain.com
+    - host: user.test.com
       paths:
         - /
-    - host: product.your-domain.com
+    - host: product.test.com
       paths:
         - /
