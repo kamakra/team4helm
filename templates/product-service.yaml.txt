@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      containers:
+      - name: product-service
+        image: "{{ .Values.productService.image.repository }}:{{ .Values.productService.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.productService.port }}
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: {{ .Values.productService.env.SPRING_PROFILES_ACTIVE }}
+        - name: SPRING_DATA_MONGODB_URI
+          value: {{ .Values.productService.env.SPRING_DATA_MONGODB_URI }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.productService.port }}
+      targetPort: {{ .Values.productService.port }}
+  selector:
+    app: product-service
