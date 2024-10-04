@@ -7,12 +7,12 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/ramannkhanna2/argocd-repo.git
-    targetRevision: HEAD
+    repoURL: https://github.com/Ganesamoorthyselvaraj/team4helm.git
+    targetRevision: main
     path: dev
   destination: 
     server: https://kubernetes.default.svc
-    namespace: myapp
+    namespace: springbootv2
 
   syncPolicy:
     syncOptions:
