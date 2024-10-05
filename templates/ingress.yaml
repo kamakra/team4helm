@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: user-service-ingress
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
@@ -22,6 +25,9 @@ kind: Ingress
 metadata:
   name: product-service-ingress
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
