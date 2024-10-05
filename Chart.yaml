@@ -1,5 +1,5 @@
 apiVersion: v2
 name: my-app
-description: A Helm chart for deploying MongoDB, user-service, and product-service
+description: A Helm chart for deploying MongoDB, user-service, product-service and ingress
 version: 0.1.0
 appVersion: "1.0"
